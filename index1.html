@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+    <!-- App icon -->
+    <link rel="icon" href="./images/app-icon.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <title>영화검색은 여기서</title>
+
+  <script type="text/javascript">
+
+// 조회할 날짜를 계산
+  var dt = new Date();
+
+  var m = dt.getMonth() + 1;
+  if (m < 10) {
+    var month = "0" + m;
+  } else {
+    var month = m + "";
+  }
+
+  var d = dt.getDate() - 1;
+  if (d < 10) {
+    var day = "0" + d;
+  } else {
+    var day = d + "";
+  }
+
+  var y = dt.getFullYear();
+  var year = y + "";
+
+  var result = year + month + day;
+
+  fun = function(){
+    return 'asd';
+  }
+
+
+var s = fun();
+
+  $(function() {
+    $.ajax({
+      //"키입력" 부분에 발급받은 키를 입력
+      //&itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정
+          url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=963c7c5d517fad0178c67646d49ba00e&targetDt="
+              + result + "&itemPerPage=10",
+          dataType : "xml",
+          success : function(data) {
+            var $data = $(data)
+                .find("boxOfficeResult>dailyBoxOfficeList>dailyBoxOffice");
+            //데이터를 테이블 구조에 저장. html의 table태그, class는 table로 하여 부트스트랩 적용
+            if ($data.length > 0) {
+              var table = $("<table/>").attr("class", "table");
+              //<table>안에 테이블의 컬럼 타이틀 부분인 thead 태그
+              var thead = $("<thead/>").append($("<tr/>"))
+                  .append(
+                      //추출하고자 하는 컬럼들의 타이틀 정의
+                      $("<th/>").html("&nbsp;순위"),
+                      $("<th/>").html("&nbsp;&nbsp;영화 제목"),
+                      $("<th/>").html("&nbsp;&nbsp;영화 개봉일"));
+
+              var tbody = $("<tbody/>");
+              $.each($data, function(i, o) {
+
+                //오픈 API에 정의된 변수와 내가 정의한 변수 데이터 파싱
+                var $rank = $(o).find("rank").text(); // 순위
+                var $movieNm = $(o).find("movieNm").text(); //영화명
+                var $openDt = $(o).find("openDt").text();// 영화 개봉일
+
+
+                //<tbody><tr><td>태그안에 파싱하여 추출된 데이터 넣기
+                var row = $("<tr/>").append(
+
+                    $("<td/>").text($rank),
+                    $("<td/>").text($movieNm),
+                    $("<td/>").text($openDt));
+
+
+                tbody.append(row);
+
+              });// end of each
+
+              table.append(thead);
+              table.append(tbody);
+              $("#selected2").append(table);
+
+            }
+          },
+          //에러 발생시 "실시간 박스오피스 로딩중"메시지가 뜨도록 한다.
+          error : function() {
+            alert("실시간 박스오피스 로딩중...");
+          }
+        });
+  });
+</script>
+
+      <script type="text/javascript">
+
+    // 조회할 날짜를 계산
+       var dt = new Date();
+
+       var m = dt.getMonth() + 1;
+       if (m < 10) {
+          var month = "0" + m;
+       } else {
+          var month = m + "";
+       }
+
+       var d = dt.getDate() - 1;
+       if (d < 10) {
+          var day = "0" + d;
+       } else {
+          var day = d + "";
+       }
+
+       var y = dt.getFullYear();
+       var year = y + "";
+
+       var result = year + month + day;
+       $(function() {
+          $.ajax({
+             //"키입력" 부분에 발급받은 키를 입력
+             //&itemPerPage: 1-10위 까지의 데이터가 출력되도록 설정
+                   url : "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=963c7c5d517fad0178c67646d49ba00e&targetDt="
+                         + result + "&itemPerPage=10",
+                   dataType : "xml",
+                   success : function(data) {
+                      var $data = $(data)
+                            .find("boxOfficeResult>dailyBoxOfficeList>dailyBoxOffice");
+                      //데이터를 테이블 구조에 저장. html의 table태그, class는 table로 하여 부트스트랩 적용
+                      if ($data.length > 0) {
+                         var table = $("<table/>").attr("class", "table");
+                         //<table>안에 테이블의 컬럼 타이틀 부분인 thead 태그
+                         var thead = $("<thead/>").append($("<tr/>"))
+                               .append(
+                                     //추출하고자 하는 컬럼들의 타이틀 정의
+                                     $("<th/>").html("&nbsp;순위"),
+                                     $("<th/>").html("&nbsp;&nbsp;영화 제목"),
+                                     $("<th/>").html("&nbsp;&nbsp;누적 매출액(원)"),
+                                     $("<th/>").html("&nbsp;&nbsp;누적 관객수(명)"));
+                         var tbody = $("<tbody/>");
+                         $.each($data, function(i, o) {
+
+                            //오픈 API에 정의된 변수와 내가 정의한 변수 데이터 파싱
+                            var $rank = $(o).find("rank").text(); // 순위
+                            var $movieNm = $(o).find("movieNm").text(); //영화명
+                            var $salesAcc = $(o).find("salesAcc").text();//누적 매출액
+                            var $audiAcc = $(o).find("audiAcc").text(); //누적 관객수
+
+                            //<tbody><tr><td>태그안에 파싱하여 추출된 데이터 넣기
+                            var row = $("<tr/>").append(
+
+                                  $("<td/>").text($rank),
+                                  $("<td/>").text($movieNm),
+
+                                  $("<td/>").text($salesAcc),
+                                  $("<td/>").text($audiAcc));
+
+                            tbody.append(row);
+
+                         });// end of each
+
+                         table.append(thead);
+                         table.append(tbody);
+                         $("#selected3").append(table);
+
+                      }
+                   },
+                   //에러 발생시 "실시간 박스오피스 로딩중"메시지가 뜨도록 한다.
+                   error : function() {
+                      alert("실시간 박스오피스 로딩중...");
+                   }
+                });
+       });
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <!--////////////////////////////////////////////////////////////////////////-->
+
+    <script>
+
+    //<![CDATA[
+
+      $(document).ready(function(){
+          //파싱함수=========================
+          var getmovie= function(u) {
+            //alert(document.getElementById("mvtitle").value);
+            $.ajax({ // 외부에데이터전송또는요청합니다.
+            url:"pass", // 데이터를요청할URL 주소
+            type : "get",
+            data : {'url' : u,'mvtitle':document.getElementById("mvtitle").value,
+            'director':document.getElementById("director").value,
+            'actor':document.getElementById("actor").value,
+            'genre':document.getElementById("genre").value,
+            'query':document.getElementById("query").value},
+            dataType:"html", // 요청할데이터의타입
+            error:function(request,status,error){   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); },
+
+            success:function(result){
+              //alert(document.getElementById("mvtitle").value);
+              location.href="search.html";
+            }//success
+    ///////////////////////////////////////////////////////////////////////
+            //error:function(request,status,error){   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); },
+          });//ajax
+          }; //getmovie
+
+          //파싱함수=======================================================================
+
+            var searchbtt = document.getElementById("searchbtt");
+            searchbtt.onclick = function(){
+              //alert("E1");
+                //$("#info").html(""); //초기화
+                globalstartCount=0; //초기화
+                globalimgidx=0;
+                varlight=[];
+                 //var yourSelect = document.getElementById("callback_select");
+                //function searchfunction(){
+                 var title=document.getElementById("mvtitle").value; //제목
+                 var director=document.getElementById("director").value; //감독
+                 var actor=document.getElementById("actor").value; //배우
+                 var genre=document.getElementById("genre").value; //장르
+                 var query=document.getElementById("query").value;//검색 질의어
+                 //var sort= yourSelect.value;//.options[yourSelect.selectedIndex].value; //정렬
+                 //var startCount=0;
+                 var type="극영화"; //유형
+                 //url
+                 var key="289HMH8CV5A8HI3J56J9";
+                 var u="http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_xml.jsp?collection=kmdb_new"+
+                 "&detail=Y&ServiceKey="+key+
+                 "&title="+title+
+                 "&director="+director+
+                 "&actor="+actor+
+                 //"&startCount="+globalstartCount+
+                 "&sort=prodYear,1"+
+                 "&genre="+genre+
+                 "&query="+query+
+                 '&type="극영화"';
+                 //alert(u);
+                 //getmovie("http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_xml.jsp?collection=kmdb_new&detail=Y&director=%EB%B0%95%EC%B0%AC%EC%9A%B1&ServiceKey=289HMH8CV5A8HI3J56J9");
+                  getmovie(u);
+                  globalu=u;
+            }
+
+      });//$(document).ready(function()
+
+
+
+    </script>
+
+    <!--////////////////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+  <!-- Nav Bar -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <h3></h3>
+    <a class="navbar-brand" href=""> 영화검색 파워엔진</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="">홈</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#abt">소개</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#footers">영화관</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+  <section class="colored-section" id="title">
+    <div class="container-fluid">
+
+      <!-- Title -->
+    <div style="height: 80px">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="big-heading">MOVIE</h1>
+          <div>
+            <input class="form-control mr-sm-2" type="search" placeholder="영화 제목" aria-label="Search" id="mvtitle">
+            <input class="form-control mr-sm-2" type="search" placeholder="감독명" aria-label="Search" id="director">
+            <input class="form-control mr-sm-2" type="search" placeholder="배우명" aria-label="Search" id="actor">
+            <input class="form-control mr-sm-2" type="search" placeholder="장르" aria-label="Search" id="genre">
+            <input class="form-control mr-sm-2" type="search" placeholder="통합검색" aria-label="Search" id="query">
+            <button class="btn btn-primary" id="searchbtt">search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <!-- About -->
+  <section class="white-section" id="abt">
+    <div class="container-fluid">
+
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+
+  <section class="colored-section" id="testimonials">
+    <div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#testimonial-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#testimonial-carousel" data-slide-to="1"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active container-fluid" id="selected2">
+          <h3>실시간 박스오피스 순위</h3><br>
+        </div>
+        <div class="carousel-item container-fluid" id="selected3">
+          <h3>실시간 누적 관객수 및 매출액</h3><br>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="white-section_2" id="footers">
+    <div class="temp1_1">
+      <img  class="toon-img" src="images/cgv.jpg"/>
+      <div class="card-body">
+        <h5 class="card-title">cgv</h5>
+        <a href="http://www.cgv.co.kr/ticket/" class="btn btn-dark buy" onclick="">보러가기</a>
+      </div>
+    </div>
+
+    <div class="temp1_1">
+      <img  class="toon-img" src="images/lotte.png"/>
+      <div class="card-body">
+        <h5 class="card-title">롯데시네마</h5>
+        <a href="http://www.lottecinema.co.kr/LCHS/Contents/ticketing/ticketing.aspx" class="btn btn-dark buy" onclick="">보러가기</a>
+      </div>
+    </div>
+
+    <div class="temp1_1">
+      <img  class="toon-img" src="images/megabox.png"/>
+      <div class="card-body">
+        <h5 class="card-title">메가박스</h5>
+        <a href="http://www.megabox.co.kr/?menuId=movie" class="btn btn-dark buy" onclick="">보러가기</a>
+      </div>
+    </div>
+
+
+  </section>
+
+  <footer class="white-section" id="footer">
+    <div class="container-fluid">
+      <p>© Copyright 2019 영검파 </p>
+    </div>
+  </footer>
+
+
+
+  <!-- jQuery first, then Bootstrap JS -->
+    <!--자동스크롤-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/truffle-contract.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

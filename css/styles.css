@@ -1,0 +1,271 @@
+
+body {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat";
+}
+
+h2, h3 {
+  font-weight: 700;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+
+.big-heading {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+/* Containers */
+
+.container-fluid{
+  padding: 7% 15%;
+}
+
+/* Scroll Indicator */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 6;
+  width: 100%;
+  background-color: #fff;
+}
+
+/* Sections */
+
+.colored-section {
+  background-color: #566573;
+  color: #fff;
+      height: 373px;
+}
+
+.white-section {
+  background-color: #dfe1e2;
+}
+
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 2rem;
+  background-color: #282c37;
+  transition: top 0.3s;
+  z-index: 5;
+  border-bottom: 3px solid #353848;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: 300;
+}
+
+
+.nav-link.active {
+  color: #3ac569 !important;
+  border-bottom: 3px solid #3ac569 !important;
+}
+
+.nav-link:hover {
+  color: #3ac569 !important;
+  border-bottom: 3px solid #fbd14b;
+}
+/* Title Section */
+
+#title .container-fluid {
+  margin-top: 4rem;
+  padding: 2% 10% 7%;
+    text-align: left;
+}
+
+/* About Section */
+
+#abt {
+  position: relative;
+  max-height: 300px;
+  height: 50px;
+}
+
+.feature-box {
+  position: relative;
+  top: 50%;
+   transform: translateY(-40%);
+}
+
+
+/* Testimonial Section */
+
+#testimonials {
+  background-color: #ababab;
+  height: auto;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+/* Work Section */
+
+#wrk {
+  position: relative;
+}
+
+#adh {
+  color: #282c37;
+}
+
+.white-section_2 {
+  background-color: #f4f4f4;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+}
+
+.feature-box {
+  padding: 5%;
+}
+
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 1200px;
+    padding: 15px;
+}
+
+.toon-img {
+  border-right: 3px solid rgba(15, 26, 39, 0.28);
+  border-left: 3px solid rgba(15, 26, 39, 0.28);
+  width: 260px;
+  height: 260px;
+}
+
+
+
+.comic-title {
+  padding-top: 2rem;
+}
+
+
+.card-title {
+  border-bottom: 1px solid rgba(15, 26, 39, 0.28);
+  padding-bottom: 1rem;
+}
+
+.card-body {
+  background-color: rgba(15, 26, 39, 0.28);
+  width:260px;
+  margin:auto;
+}
+
+.card-text {
+  color: black;
+}
+
+.toon {
+  margin: 0 6rem 5rem;
+  border-top: 3px solid rgba(15, 26, 39, 0.28);
+  border-bottom: none;
+}
+
+.card_toon{
+  margin: 20px;
+  width: auto;
+  height: auto;
+}
+/* Footer Section */
+
+#footer {
+  background-color: #282c37;
+  max-height: 200px;
+  height: 100%;
+}
+
+#footer .container-fluid {
+  padding: 2.5% 15%;
+}
+
+.footer-icons {
+  margin: 10px 10px;
+  color: #fff;
+}
+.text-center img{
+  max-width: 100%;
+}
+
+.temp1_1{
+
+  display: inline-block;
+}
+@media (max-width: 950px){
+
+  .selected{
+    width: auto;
+  }
+  .text-center img{
+    max-width: 100%;
+    max-height: 100%;
+    float:left;
+    }
+
+  .card_toon{
+    margin: 20px;
+    width: 100%;
+    height: 80px;
+  }
+  .card-body{
+    width:260px;
+  }
+
+
+
+  .toon {
+    margin: 0 6rem 5rem;
+    border-top: 3px solid rgba(15, 26, 39, 0.28);
+    border-bottom: none;
+  }
+
+  .toon-img {
+    width:260px;
+    height:260px;
+    border-right: 3px solid rgba(15, 26, 39, 0.28);
+    border-left: 3px solid rgba(15, 26, 39, 0.28);
+
+  }
+  .temp1_1{
+
+    margin:auto;
+    left: 50%;
+    display:block;
+  }
+}

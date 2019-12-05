@@ -1,0 +1,205 @@
+
+body {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat";
+}
+
+h2, h3 {
+  font-weight: 700;
+}
+
+p {
+  color: #8f8f8f;
+}
+
+/* Headings */
+
+.big-heading {
+  font-family: "Montserrat";
+  font-weight: 800;
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+/* Containers */
+
+.container-fluid{
+  padding: 7% 15%;
+}
+
+/* Scroll Indicator */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 6;
+  width: 100%;
+  background-color: #fff;
+}
+
+/* Sections */
+
+.colored-section {
+  background-color: #566573;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #F8F8FF;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  padding: 0 2rem;
+  background-color: #282c37;
+  transition: top 0.3s;
+  z-index: 5;
+  border-bottom: 3px solid #353848;
+}
+
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-family: "Montserrat";
+  font-weight: 300;
+}
+
+.nav-link.active {
+  color: #3ac569 !important;
+  border-bottom: 3px solid #3ac569 !important;
+}
+
+.nav-link:hover {
+  color: #3ac569 !important;
+  border-bottom: 3px solid #fbd14b;
+}
+/* Title Section */
+
+#title .container-fluid {
+  margin-top: 4rem;
+  padding: 3%;
+    text-align: left;
+}
+
+/*  sub-search */
+.sub_search{
+  padding: 10px;
+}
+
+
+/* search window */
+
+.serch_window{
+
+  padding: 10px;
+}
+
+
+
+
+/* Footer Section */
+
+#footer {
+  background-color: #282c37;
+  max-height: 200px;
+  height: 100%;
+}
+
+#footer .container-fluid {
+  padding: 2.5% 15%;
+}
+
+.footer-icons {
+  margin: 10px 10px;
+  color: #fff;
+}
+
+
+
+.paper{
+  width: 190px;
+  height: 300px;
+  margin-top: 10px;
+  /*margin-bottom: 10px;*/
+  padding: 15px 15px 0;
+  font-size: 11px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px rgba(34,25,25,0.4);
+}
+.paper-description{
+  margin: 15px 0;
+  font-size: 15px;
+}
+.paper-link{
+  display: block;
+  float: left;
+}
+.paper-text{
+  float: left;
+  width: 150px;
+  margin-left: 10px;
+}
+#search_window{
+  width: 920px;
+  margin: 0 auto;
+}
+  /*세 줄 */
+  @media(max-width: 919px){
+    #search_window{width: 690px;}
+  }
+  /*네 줄*/
+  @media(min-width: 930px) and (max-width: 1149px){
+    #search_window {width: 920px;}
+  }
+  /*다섯 줄*/
+  @media(min-width: 1150px) and (max-width: 1379px){
+    #search_window {width: 1150px;}
+  }
+  /*여섯 줄*/
+  @media(min-width: 1380px){
+    #search_window{width: 1380px;}
+  }
+
+/*라이트박스*/
+#darken-background{
+  position: absolute;
+  top: 0;left: 0; right: 0;
+  height: 100%;
+
+  display: none;
+  background: rgba(0,0,0,0.9);
+  z-index: 10000;
+  overflow-y: scroll;
+}
+#lightbox{
+  width: 700px;
+  margin: 20px auto; padding: 15px;
+  border: 1px solid #333333;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 5px 5px rgba(34,25,25,0.4);
+  text-align: center;
+}
+.user-information{overflow: hidden; text-align: left;}
+.user-information-image{float: left; width: 70px;}
+.user-information-text{float: right; width: 620px;}
+.lightbox-splitter{margin: 10px 0;}
+.lightbox-splitter2{margin: 10px 0; background-color: black;}
+.introduce_director{font-size: 20px;}
